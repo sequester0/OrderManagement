@@ -1,4 +1,5 @@
-﻿using OrderManagement.Common.DTO;
+﻿using OrderManagement.Common.DTO.Basket;
+using OrderManagement.Common.Result;
 using OrderManagement.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ namespace OrderManagement.Common.Contracts
 {
     public interface IBasketBusinessEngine
     {
-        Basket GetBasketById(int basketid);
         List<Basket> Get();
-        void Add(BasketCreateDto basketCreateDto);
+        Result<Basket> GetBasketById(int basketid);
+        Result<Basket> Add(BasketCreateDto basketCreateDto);
+        //Result<BasketUpdateDto> Update(int userId, BasketUpdateDto basketUpdateDto);
+        Result<Basket> Remove(int productid);
     }
 }

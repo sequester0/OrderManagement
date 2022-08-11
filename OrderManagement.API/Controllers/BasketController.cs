@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderManagement.BusinessEngine;
 using OrderManagement.Common.Contracts;
-using OrderManagement.Common.DTO;
+using OrderManagement.Common.DTO.Basket;
 using OrderManagement.Data.Models;
 
 namespace OrderManagement.API.Controllers
@@ -26,31 +26,51 @@ namespace OrderManagement.API.Controllers
             return Ok(basketList);
         }
 
-        [HttpGet("{basketid}")]
+        [HttpGet("{basketid}", Name = "GetBasket")]
         public ActionResult GetBasket(int basketid)
         {
             var basket = _basketBusinessEngine.GetBasketById(basketid);
-            if (basket == null)
+            if (!basket.Status)
             {
-                return NotFound();
+                return BadRequest(basket);
             }
 
             return Ok(basket);
         }
 
+        //[HttpPatch("{userid}")]
+        //public ActionResult UpdateBasket(int userid, BasketUpdateDto basketUpdateDto)
+        //{
+        //    var result = _basketBusinessEngine.Update(userid, basketUpdateDto);
+        //    if (!result.Status)
+        //    {
+        //        return BadRequest(result);
+        //    }
+
+        //    return Ok(result);
+        //}
+
         [HttpPost]
         public ActionResult<BasketCreateDto> CreateBasketItem(BasketCreateDto basketCreateDto)
         {
-            if (basketCreateDto == null)
+            var result = _basketBusinessEngine.Add(basketCreateDto);
+            if (!result.Status)
             {
-                return NotFound();
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpDelete("{productid}")]
+        public ActionResult DeleteBasketItem(int productid)
+        {
+            var result = _basketBusinessEngine.Remove(productid);
+            if (!result.Status)
+            {
+                return BadRequest(result);
             }
 
-            //var maxBasketId = _basketBusinessEngine.Get().Max(c => c.BasketId);
-
-            _basketBusinessEngine.Add(basketCreateDto);
-            return Ok(basketCreateDto);
-            //return CreatedAtRoute(nameof(CreateBasketItem)w, new {basketCreateDto = finalBasketItem} ,finalBasketItem);
+            return Ok(result);
         }
     }
 }
