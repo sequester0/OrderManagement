@@ -18,6 +18,7 @@ namespace OrderManagement.Data.Models
         public virtual DbSet<CustomerData> CustomerData { get; set; } = null!;
         public virtual DbSet<Invoice> Invoices { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<Product> Products { get; set; } = null!;
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -127,6 +128,17 @@ namespace OrderManagement.Data.Models
                 entity.Property(e => e.OrderId)
                     .ValueGeneratedOnAdd()
                     .HasColumnName("OrderID");
+
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.ToTable("Product");
+
+                entity.Property(e => e.ProductId)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ProductID");
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
             });
