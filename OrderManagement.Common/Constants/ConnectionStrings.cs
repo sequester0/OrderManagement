@@ -8,7 +8,6 @@ namespace OrderManagement.Common.Constants
 {
     public class ConnectionStrings
     {
-        public const string DbConnectionString = "Data Source = servervt05.scstr.local; Initial Catalog = EGITIM_TEST; Integrated Security = False; User ID = egitim_user; Password=Egitim2022!!;Connect Timeout = 15; Encrypt=False;Packet Size = 4096";
-
+        public const string DbConnectionString = "Server=servervt05.scstr.local;User ID=egitim_user;Password=Egitim2022!!;Database=EGITIM_TEST;Trusted_Connection=False";
     }
 }
