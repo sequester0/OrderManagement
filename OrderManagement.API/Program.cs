@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBasketBusinessEngine, BasketBusinessEngine>();
+builder.Services.AddScoped<IProductBusinessEngine, ProductBusinessEngine>();
 
 var app = builder.Build();
 
