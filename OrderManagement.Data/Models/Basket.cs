@@ -7,5 +7,6 @@ namespace OrderManagement.Data.Models
     {
         public int BasketId { get; set; }
         public int? ProductId { get; set; }
+        public int? UserId { get; set; }
     }
 }
