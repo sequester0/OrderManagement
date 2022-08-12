@@ -116,7 +116,7 @@ namespace OrderManagement.Data.Models
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Order");
 
