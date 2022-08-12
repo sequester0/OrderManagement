@@ -1,12 +1,14 @@
 ﻿using OrderManagement.Data.Models;
 using OrderManagement.Common.DTO;
+using OrderManagement.Common.Result;
 
 namespace OrderManagement.Common.Contracts
 {
     public interface IOrderBusinessEngine
     {
-        Order GetOrderById(int orderid);
+        Result<OrderDto> GetOrderById(int orderid);
         List<Order> Get();
-        void Add(OrderCreateDto orderCreatDto);
+        Result<Order> Add(OrderCreateDto orderCreatDto);
+        Result<Order> Remove(int productid);
     }
 }

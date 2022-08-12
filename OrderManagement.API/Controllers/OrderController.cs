@@ -29,28 +29,36 @@ namespace OrderManagement.API.Controllers
         [HttpGet("{orderid}")]
         public ActionResult GetOrder(int orderid)
         {
-            var order = _orderBusinessEngine.GetOrderById(orderid);
-            if (order == null)
+            var result = _orderBusinessEngine.GetOrderById(orderid);
+            if (!result.Status)
             {
-                return NotFound();
-            }
-
-            return Ok(order);
+                return BadRequest(result);
+            }          
+            return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult<OrderBusinessEngine> CreateBasketItem(OrderCreateDto orderCreateDto)
+        public ActionResult<OrderBusinessEngine> CreateOrderItem(OrderCreateDto orderCreateDto)
         {
-            if (orderCreateDto == null)
+            var result = _orderBusinessEngine.Add(orderCreateDto);
+            if (!result.Status)
             {
-                return NotFound();
+                return BadRequest(result);
             }
-
-            _orderBusinessEngine.Add(orderCreateDto);
-            return Ok(orderCreateDto);
+            //_orderBusinessEngine.Add(orderCreateDto);
+            return Ok(result);
         
         }
 
-
+        [HttpDelete("{orderid}")]
+        public ActionResult DeleteOrderItem(int orderid)
+        {
+            var result= _orderBusinessEngine.Remove(orderid);
+            if (!result.Status)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
     }
 }
