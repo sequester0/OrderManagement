@@ -30,7 +30,8 @@ namespace OrderManagement.BusinessEngine
             {
                 var finalProductItem = new Product()
                 {
-                    ProductName = productCreateDto.ProductName
+                    ProductName = productCreateDto.ProductName,
+                    BrandId = productCreateDto.BrandId
                 };
 
                 _context.Products.Add(finalProductItem);
@@ -51,7 +52,8 @@ namespace OrderManagement.BusinessEngine
                 var productDto = new ProductDto()
                 {
                     ProductId = product.ProductId,
-                    ProductName = product.ProductName
+                    ProductName = product.ProductName,
+                    BrandId = (int)product.BrandId
                 };
                 return new Result<ProductDto> { Data = productDto, Message = "Operation successful", Status = true };
             }

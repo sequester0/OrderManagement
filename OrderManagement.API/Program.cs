@@ -6,7 +6,7 @@ using OrderManagement.Data.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<EGITIM_TESTContext>(options => options.UseSqlServer(connectionString),ServiceLifetime.Transient,ServiceLifetime.Transient);
+builder.Services.AddDbContext<EGITIM_TESTContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Transient, ServiceLifetime.Transient);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBasketBusinessEngine, BasketBusinessEngine>();
 builder.Services.AddScoped<IProductBusinessEngine, ProductBusinessEngine>();
+builder.Services.AddScoped<IBrandBusinessEngine, BrandBusinessEngine>();
 
 var app = builder.Build();
 
