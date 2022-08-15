@@ -45,7 +45,7 @@ namespace OrderManagement.Data.Models
 
             modelBuilder.Entity<Brand>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Brand");
 
@@ -56,8 +56,6 @@ namespace OrderManagement.Data.Models
                 entity.Property(e => e.BrandName)
                     .HasMaxLength(150)
                     .IsUnicode(false);
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
             });
 
             modelBuilder.Entity<CustomerData>(entity =>
@@ -141,6 +139,8 @@ namespace OrderManagement.Data.Models
                     .HasColumnName("ProductID");
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.Property(e => e.BrandId).HasColumnName("BrandID");
             });
         }
 
