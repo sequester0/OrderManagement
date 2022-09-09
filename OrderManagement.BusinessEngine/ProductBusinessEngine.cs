@@ -1,12 +1,9 @@
-﻿using OrderManagement.Common.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderManagement.Common.Contracts;
 using OrderManagement.Common.DTO.Product;
 using OrderManagement.Common.Result;
 using OrderManagement.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace OrderManagement.BusinessEngine
 {
@@ -19,64 +16,67 @@ namespace OrderManagement.BusinessEngine
             _context = context;
         }
 
-        public List<Product> Get()
+        public async Task<Result<List<Product>>> Get()
         {
-            return _context.Products.ToList();
+            Log.Information("Getting all products");
+            var products = await _context.Products.ToListAsync();
+            return new Result<List<Product>> { Data = products, Message = "Operation successful", Status = true };
         }
 
-        public Result<Product> Add(ProductCreateDto productCreateDto)
+        public async Task<Result<Product>> Add(ProductCreateDto productCreateDto)
         {
-            try
-            {
-                var finalProductItem = new Product()
-                {
-                    ProductName = productCreateDto.ProductName,
-                    BrandId = productCreateDto.BrandId
-                };
+            Log.Information("Adding product");
 
-                _context.Products.Add(finalProductItem);
-                _context.SaveChanges();
-                return new Result<Product> { Data = finalProductItem, Message = "Operation successful", Status = true };
-            }
-            catch (Exception ex)
+            var finalProductItem = new Product()
             {
-                return new Result<Product> { Data = null , Message = ex.Message, Status = false };
-            }
+                ProductName = productCreateDto.ProductName,
+                BrandId = productCreateDto.BrandId
+            };
+
+            await _context.Products.AddAsync(finalProductItem);
+            await _context.SaveChangesAsync();
+
+            return new Result<Product> { Data = finalProductItem, Message = "Operation successful", Status = true };
         }
 
-        public Result<ProductDto> GetProductById(int productid)
+        public async Task<Result<ProductDto>> GetProductById(int productid)
         {
-            try
+            Log.Information($"The product with id number {productid} is getting.");
+
+            var product = await _context.Products.FirstAsync(p => p.ProductId == productid);
+            
+            if (product == null)
             {
-                var product = _context.Products.First(p => p.ProductId == productid);
-                var productDto = new ProductDto()
-                {
-                    ProductId = product.ProductId,
-                    ProductName = product.ProductName,
-                    BrandId = (int)product.BrandId
-                };
-                return new Result<ProductDto> { Data = productDto, Message = "Operation successful", Status = true };
+                Log.Error($"The product with id number {productid} couldn't found while trying to get.");
+                throw new KeyNotFoundException("Product not found. Try again!");
             }
-            catch (Exception ex)
+            
+            var productDto = new ProductDto()
             {
-                return new Result<ProductDto> { Message = ex.Message, Status = false };
-            }
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                BrandId = product.BrandId
+            };
+
+            return new Result<ProductDto> { Data = productDto, Message = "Operation successful", Status = true};
         }
 
-        public Result<Product> Remove(int productid)
+        public async Task<Result<Product>> Remove(int productid)
         {
-            try
-            {
-                var productItemToRemove = _context.Products.First(b => b.ProductId == productid);
+            Log.Information($"The product with id number {productid} is being deleted.");
 
-                _context.Products.Remove(productItemToRemove);
-                _context.SaveChanges();
-                return new Result<Product> { Data = productItemToRemove, Message = "Operation successful", Status = true };
-            }
-            catch (Exception ex)
+            var productItemToRemove = await _context.Products.FirstAsync(x => x.ProductId == productid);
+
+            if (productItemToRemove == null)
             {
-                return new Result<Product> { Message = ex.Message, Status = false };
+                Log.Error($"The product with id number {productid} couldn't found while trying to deleted.");
+                throw new KeyNotFoundException("Product not found. Try again!");
             }
+            
+            _context.Products.Remove(productItemToRemove);
+            await _context.SaveChangesAsync();
+
+            return new Result<Product> { Data = productItemToRemove, Message = "Operation successful", Status = true };
         }
     }
 }

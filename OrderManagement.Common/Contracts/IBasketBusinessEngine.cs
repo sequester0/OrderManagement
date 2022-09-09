@@ -1,20 +1,16 @@
 ﻿using OrderManagement.Common.DTO.Basket;
+using OrderManagement.Common.DTO.Brand;
 using OrderManagement.Common.Result;
 using OrderManagement.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderManagement.Common.Contracts
 {
     public interface IBasketBusinessEngine
     {
-        List<Basket> Get();
-        Result<Basket> GetBasketById(int basketid);
-        Result<Basket> Add(BasketCreateDto basketCreateDto);
+        Task<Result<List<BrandDto>>> Get(int userid);
+        Task<Result<Basket>> GetBasketById(int basketid);
+        Task<Result<Basket>> Add(BasketCreateDto basketCreateDto, int userid);
         //Result<BasketUpdateDto> Update(int userId, BasketUpdateDto basketUpdateDto);
-        Result<Basket> Remove(int productid);
+        Task<Result<Basket>> Remove(int productid, int userid);
     }
 }

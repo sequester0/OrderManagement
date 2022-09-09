@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OrderManagement.BusinessEngine;
+﻿using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Common.Contracts;
 using OrderManagement.Common.DTO.Basket;
-using OrderManagement.Data.Models;
+using OrderManagement.Common.Helpers;
 
 namespace OrderManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BasketController : ControllerBase
     {
         IBasketBusinessEngine _basketBusinessEngine;
@@ -20,21 +18,18 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBaskets()
+        public async Task<ActionResult> GetBaskets()
         {
-            var basketList = _basketBusinessEngine.Get();
+            var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "id")?.Value);
+
+            var basketList = await _basketBusinessEngine.Get(userId);
             return Ok(basketList);
         }
 
         [HttpGet("{basketid}", Name = "GetBasket")]
-        public ActionResult GetBasket(int basketid)
+        public async Task<ActionResult> GetBasket(int basketid)
         {
-            var basket = _basketBusinessEngine.GetBasketById(basketid);
-            if (!basket.Status)
-            {
-                return BadRequest(basket);
-            }
-
+            var basket = await _basketBusinessEngine.GetBasketById(basketid);
             return Ok(basket);
         }
 
@@ -51,25 +46,20 @@ namespace OrderManagement.API.Controllers
         //}
 
         [HttpPost]
-        public ActionResult<BasketCreateDto> CreateBasketItem(BasketCreateDto basketCreateDto)
+        public async Task<ActionResult<BasketCreateDto>> CreateBasketItem(BasketCreateDto basketCreateDto)
         {
-            var result = _basketBusinessEngine.Add(basketCreateDto);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
+            var userid = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "id")?.Value);
+
+            var result = await _basketBusinessEngine.Add(basketCreateDto, userid);
             return Ok(result);
         }
 
         [HttpDelete("{productid}")]
-        public ActionResult DeleteBasketItem(int productid)
+        public async Task<ActionResult> DeleteBasketItem(int productid)
         {
-            var result = _basketBusinessEngine.Remove(productid);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
+            var userid = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "id")?.Value);
 
+            var result = await _basketBusinessEngine.Remove(productid, userid);
             return Ok(result);
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace OrderManagement.Data.Models
+﻿namespace OrderManagement.Data.Models
 {
     public partial class CustomerData
     {
