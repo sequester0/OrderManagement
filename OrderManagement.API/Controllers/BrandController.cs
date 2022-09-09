@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Common.Contracts;
 using OrderManagement.Common.DTO.Brand;
+using OrderManagement.Common.Helpers;
 
 namespace OrderManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BrandController : ControllerBase
     {
         IBrandBusinessEngine _brandBusinessEngine;
@@ -17,62 +18,39 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBrands()
+        public async Task<ActionResult> GetBrands()
         {
-            var result = _brandBusinessEngine.GetBrands();
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
+            var result = await _brandBusinessEngine.GetBrands();
             return Ok(result);
         }
 
         [HttpGet("{brandid}")]
-        public ActionResult GetBrandById(int brandid)
+        public async Task<ActionResult> GetBrandById(int brandid)
         {
-            var result = _brandBusinessEngine.GetBrandById(brandid);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
-
+            var result = await _brandBusinessEngine.GetBrandById(brandid);
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreateBrand(BrandCreateDto brandCreateDto)
+        public async Task<ActionResult> CreateBrand(BrandCreateDto brandCreateDto)
         {
-            var result = _brandBusinessEngine.Add(brandCreateDto);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
-
+            var result = await _brandBusinessEngine.Add(brandCreateDto);
             return Ok(result);
         }
 
         [HttpPut("{brandid}")]
-        public ActionResult UpdateName(int brandid, BrandCreateDto brandCreateDto)
+        public async Task<ActionResult> UpdateName(int brandid, BrandCreateDto brandCreateDto)
         {
-            var result = _brandBusinessEngine.UpdateBrandName(brandid, brandCreateDto);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
-
+            var result = await _brandBusinessEngine.UpdateBrandName(brandid, brandCreateDto);
             return Ok(result);
         }
 
         [HttpDelete("{brandid}")]
-        public ActionResult Remove(int brandid)
+        public async Task<ActionResult> Remove(int brandid)
         {
-            var result = _brandBusinessEngine.Remove(brandid);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
-
+            var result = await _brandBusinessEngine.Remove(brandid);
             return Ok(result);
         }
+
     }
 }

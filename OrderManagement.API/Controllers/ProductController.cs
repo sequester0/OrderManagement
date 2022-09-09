@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Common.Contracts;
 using OrderManagement.Common.DTO.Product;
+using OrderManagement.Common.Helpers;
 
 namespace OrderManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         IProductBusinessEngine _productBusinessEngine;
@@ -17,44 +18,32 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetProducts()
+        public async Task<ActionResult> GetProducts()
         {
-            var productList = _productBusinessEngine.Get();
+            var productList = await _productBusinessEngine.Get();
             return Ok(productList);
         }
 
         [HttpGet("{productid}")]
-        public ActionResult GetProduct(int productid)
+        public async Task<ActionResult> GetProduct(int productid)
         {
-            var result = _productBusinessEngine.GetProductById(productid);
-            if (!result.Status)
-            {
-                return NotFound(result);
-            }
+            var result = await _productBusinessEngine.GetProductById(productid);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreateProduct(ProductCreateDto productCreateDto)
+        public async Task<ActionResult> CreateProduct(ProductCreateDto productCreateDto)
         {
-            var result = _productBusinessEngine.Add(productCreateDto);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
+            var result = await _productBusinessEngine.Add(productCreateDto);
 
             return Ok(result);
         }
 
         [HttpDelete("{productid}")]
-        public ActionResult DeleteProductItem(int productid)
+        public async Task<ActionResult> DeleteProductItem(int productid)
         {
-            var result = _productBusinessEngine.Remove(productid);
-            if (!result.Status)
-            {
-                return BadRequest(result);
-            }
+            var result = await _productBusinessEngine.Remove(productid);
 
             return Ok(result);
         }
