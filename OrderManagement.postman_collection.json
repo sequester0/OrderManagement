@@ -1,0 +1,1665 @@
+{
+	"info": {
+		"_postman_id": "96c4516a-3d31-4a36-b616-20d23553914f",
+		"name": "OrderManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22334279"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"var token = res.token;\r",
+									"pm.environment.set(\"token\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kerem\",\r\n    \"password\": \"denemesifretesthaha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"kerem\",\r\n    \"password\": \"denemesifretesthaha\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/users/authenticate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 07:43:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Kerem\",\n    \"lastName\": \"Gümüş\",\n    \"username\": \"kerem\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VyTmFtZSI6ImtlcmVtIiwibmJmIjoxNjYyNDUwMjExLCJleHAiOjE2NjI0NTM4MTEsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwODgiLCJhdWQiOiJvcmRlcm1hbmFnZW1lbnRhcGkifQ.BBw5ZCkM94rvPD580HS8F_ttnaMif4IM9yu0bQjIIUc\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Current User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 07:43:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"id\": 1,\n        \"firstName\": \"Kerem\",\n        \"lastName\": \"Gümüş\",\n        \"username\": \"kerem\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/userid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"userid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 07:43:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"id\": 2,\n        \"firstName\": \"TestKerem\",\n        \"lastName\": \"TestGumus\",\n        \"username\": \"testkeremgumus\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/users/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/users/all",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 07:44:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Kerem\",\n        \"lastName\": \"Gümüş\",\n        \"username\": \"kerem\"\n    },\n    {\n        \"id\": 2,\n        \"firstName\": \"TestKerem\",\n        \"lastName\": \"TestGumus\",\n        \"username\": \"testkeremgumus\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"username\": \"string\",\r\n    \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"testUser\",\r\n    \"lastName\": \"testUserLastName\",\r\n    \"username\": \"testUsername\",\r\n    \"password\": \"testPassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/users/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 07:44:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"id\": 5,\n        \"firstName\": \"testUser\",\n        \"lastName\": \"testUserLastName\",\n        \"username\": \"testUsername\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Basket",
+			"item": [
+				{
+					"name": "Get Basket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7088/api/basket",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7088",
+							"path": [
+								"api",
+								"basket"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Basket",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7088/api/basket",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7088",
+									"path": [
+										"api",
+										"basket"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:43:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        {\n            \"brandId\": 5,\n            \"brandName\": \"Pierre Cardin\",\n            \"products\": [\n                {\n                    \"productId\": 12,\n                    \"productName\": \"P - 3\"\n                },\n                {\n                    \"productId\": 11,\n                    \"productName\": \"P - 2\"\n                },\n                {\n                    \"productId\": 10,\n                    \"productName\": \"P - 1\"\n                },\n                {\n                    \"productId\": 17,\n                    \"productName\": \"P - 4\"\n                }\n            ]\n        },\n        {\n            \"brandId\": 4,\n            \"brandName\": \"TestBrand\",\n            \"products\": [\n                {\n                    \"productId\": 9,\n                    \"productName\": \"TestProduct\"\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Basket Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7088/api/basket",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7088",
+							"path": [
+								"api",
+								"basket"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Basket Item",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": 34\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7088/api/basket",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7088",
+									"path": [
+										"api",
+										"basket"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:46:32 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"basketId\": 11,\n        \"productId\": 34,\n        \"userId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Basket By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7088/api/basket/basketid",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7088",
+							"path": [
+								"api",
+								"basket",
+								"basketid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Basket By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://localhost:7088/api/basket/4",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7088",
+									"path": [
+										"api",
+										"basket",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:46:50 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"basketId\": 4,\n        \"productId\": 11,\n        \"userId\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product From Basket By ProductId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7088/api/basket/productid",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7088",
+							"path": [
+								"api",
+								"basket",
+								"productid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product From Basket By ProductId",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7088/api/basket/34",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7088",
+									"path": [
+										"api",
+										"basket",
+										"34"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "97"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:47:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"basketId\": 11,\n        \"productId\": 34,\n        \"userId\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "Get Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/brand",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Brands",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/brand",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "603"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:47:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        {\n            \"brandId\": 1,\n            \"brandName\": \"H&M\",\n            \"products\": [\n                {\n                    \"productId\": 1,\n                    \"productName\": \"Tişört / H&M\"\n                },\n                {\n                    \"productId\": 2,\n                    \"productName\": \"Gömlek / H&M\"\n                },\n                {\n                    \"productId\": 3,\n                    \"productName\": \"Pantolon / H&M\"\n                }\n            ]\n        },\n        {\n            \"brandId\": 4,\n            \"brandName\": \"TestBrand\",\n            \"products\": [\n                {\n                    \"productId\": 9,\n                    \"productName\": \"TestProduct\"\n                }\n            ]\n        },\n        {\n            \"brandId\": 5,\n            \"brandName\": \"Pierre Cardin\",\n            \"products\": [\n                {\n                    \"productId\": 10,\n                    \"productName\": \"P - 1\"\n                },\n                {\n                    \"productId\": 11,\n                    \"productName\": \"P - 2\"\n                },\n                {\n                    \"productId\": 12,\n                    \"productName\": \"P - 3\"\n                },\n                {\n                    \"productId\": 17,\n                    \"productName\": \"P - 4\"\n                }\n            ]\n        },\n        {\n            \"brandId\": 7,\n            \"brandName\": \"ID7TestBrand\",\n            \"products\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"brandName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brand",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Brand",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"brandName\": \"CreateBrandTest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/brand",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:47:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"brandId\": 9,\n        \"brandName\": \"CreateBrandTest\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Brand By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/brand/brandid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand",
+								"brandid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Brand By Id (have product)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/brand/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:47:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        {\n            \"brandId\": 1,\n            \"brandName\": \"H&M\",\n            \"products\": [\n                {\n                    \"productId\": 1,\n                    \"productName\": \"Tişört / H&M\"\n                },\n                {\n                    \"productId\": 2,\n                    \"productName\": \"Gömlek / H&M\"\n                },\n                {\n                    \"productId\": 3,\n                    \"productName\": \"Pantolon / H&M\"\n                }\n            ]\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get Brand By Id (no product)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/brand/7",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:48:22 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        {\n            \"brandId\": 7,\n            \"brandName\": \"ID7TestBrand\",\n            \"products\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Brand Name By Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"brandName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brand/brandid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand",
+								"brandid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Brand Name By Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"brandName\": \"TestBrandID7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/brand/7",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:50:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"brandId\": 7,\n        \"brandName\": \"TestBrandID7\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Brand By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/brand/brandid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brand",
+								"brandid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Brand By Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/brand/9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"brand",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:50:37 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"brandId\": 9,\n        \"brandName\": \"CreateBrandTest\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/product",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "437"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:50:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 1,\n        \"productName\": \"Tişört / H&M\",\n        \"brandId\": 1\n    },\n    {\n        \"productId\": 2,\n        \"productName\": \"Gömlek / H&M\",\n        \"brandId\": 1\n    },\n    {\n        \"productId\": 3,\n        \"productName\": \"Pantolon / H&M\",\n        \"brandId\": 1\n    },\n    {\n        \"productId\": 9,\n        \"productName\": \"TestProduct\",\n        \"brandId\": 4\n    },\n    {\n        \"productId\": 10,\n        \"productName\": \"P - 1\",\n        \"brandId\": 5\n    },\n    {\n        \"productId\": 11,\n        \"productName\": \"P - 2\",\n        \"brandId\": 5\n    },\n    {\n        \"productId\": 12,\n        \"productName\": \"P - 3\",\n        \"brandId\": 5\n    },\n    {\n        \"productId\": 17,\n        \"productName\": \"P - 4\",\n        \"brandId\": 5\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productName\": \"string\",\r\n  \"brandId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"productName\": \"P - 5\",\r\n  \"brandId\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/product",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:51:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"productId\": 19,\n        \"productName\": \"P - 5\",\n        \"brandId\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product/id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"id"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product By Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/product/17",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										"17"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:51:30 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"productId\": 17,\n        \"productName\": \"P - 4\",\n        \"brandId\": 5\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/product/id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"id"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product By Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/product/17",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"product",
+										"17"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "106"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:51:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"productId\": 17,\n        \"productName\": \"P - 4\",\n        \"brandId\": 5\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/order?pageSize=10&pageNumber=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/order?pageSize=10&pageNumber=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"order"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "1844"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 14:03:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "X-Pagination",
+									"value": "{\"TotalItemCount\":3,\"TotalPageCount\":1,\"PageSize\":10,\"CurrentPage\":1}"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        [\n            {\n                \"orderId\": 21,\n                \"userId\": 1,\n                \"productId\": 12,\n                \"orderDate\": \"2022-09-07T16:44:00\",\n                \"currentOrderStatus\": \"OrderReceived\",\n                \"brandName\": \"Pierre Cardin\",\n                \"productName\": \"P - 3\",\n                \"orderAddress\": \"testOrAdress2\",\n                \"invoiceAddress\": \"testInAddress2\"\n            },\n            {\n                \"orderId\": 22,\n                \"userId\": 1,\n                \"productId\": 11,\n                \"orderDate\": \"2022-09-07T16:44:00\",\n                \"currentOrderStatus\": \"OrderReceived\",\n                \"brandName\": \"Pierre Cardin\",\n                \"productName\": \"P - 2\",\n                \"orderAddress\": \"testOrAdress2\",\n                \"invoiceAddress\": \"testInAddress2\"\n            },\n            {\n                \"orderId\": 23,\n                \"userId\": 1,\n                \"productId\": 10,\n                \"orderDate\": \"2022-09-07T16:44:00\",\n                \"currentOrderStatus\": \"OrderReceived\",\n                \"brandName\": \"Pierre Cardin\",\n                \"productName\": \"P - 1\",\n                \"orderAddress\": \"testOrAdress2\",\n                \"invoiceAddress\": \"testInAddress2\"\n            },\n            {\n                \"orderId\": 24,\n                \"userId\": 1,\n                \"productId\": 9,\n                \"orderDate\": \"2022-09-07T16:44:00\",\n                \"currentOrderStatus\": \"OrderReceived\",\n                \"brandName\": \"TestBrand\",\n                \"productName\": \"TestProduct\",\n                \"orderAddress\": \"testOrAdress2\",\n                \"invoiceAddress\": \"testInAddress2\"\n            }\n        ],\n        [\n            {\n                \"orderId\": 9,\n                \"userId\": 1,\n                \"productId\": 2,\n                \"orderDate\": \"2022-08-09T00:00:00\",\n                \"currentOrderStatus\": \"OrderInProgress\",\n                \"brandName\": \"H&M\",\n                \"productName\": \"Gömlek / H&M\",\n                \"orderAddress\": null,\n                \"invoiceAddress\": null\n            },\n            {\n                \"orderId\": 10,\n                \"userId\": 1,\n                \"productId\": 1,\n                \"orderDate\": \"2022-08-09T00:00:00\",\n                \"currentOrderStatus\": \"OrderSent\",\n                \"brandName\": \"H&M\",\n                \"productName\": \"Tişört / H&M\",\n                \"orderAddress\": null,\n                \"invoiceAddress\": null\n            }\n        ],\n        [\n            {\n                \"orderId\": 1,\n                \"userId\": 1,\n                \"productId\": 10,\n                \"orderDate\": \"2022-08-08T00:00:00\",\n                \"currentOrderStatus\": \"OrderCancelled\",\n                \"brandName\": \"Pierre Cardin\",\n                \"productName\": \"P - 1\",\n                \"orderAddress\": \"testOrderAddress1\",\n                \"invoiceAddress\": \"testInvoiceAddress1\"\n            },\n            {\n                \"orderId\": 2,\n                \"userId\": 1,\n                \"productId\": 9,\n                \"orderDate\": \"2022-08-08T00:00:00\",\n                \"currentOrderStatus\": \"OrderReceived\",\n                \"brandName\": \"TestBrand\",\n                \"productName\": \"TestProduct\",\n                \"orderAddress\": \"testOrderAddress1\",\n                \"invoiceAddress\": \"testInvoiceAddress1\"\n            }\n        ]\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order By Order Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/order/orderid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"orderid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Order By Order Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/order/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"order",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Sep 2022 10:26:47 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"orderId\": 1,\n        \"userId\": 1,\n        \"productId\": 10,\n        \"orderDate\": \"2022-08-08T00:00:00\",\n        \"currentOrderStatus\": \"OrderReceived\",\n        \"brandName\": \"Pierre Cardin\",\n        \"productName\": \"P - 1\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderAddress\": \"string\",\r\n    \"invoiceAddress\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/order/createorder",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"createorder"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"orderAddress\": \"testOrAdress2\",\r\n    \"invoiceAddress\": \"testInAddress2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/order/createorder",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"order",
+										"createorder"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "906"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:44:13 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": [\n        {\n            \"orderId\": 21,\n            \"userId\": 1,\n            \"productId\": 12,\n            \"orderDate\": \"2022-09-07T16:44:13.8841601+03:00\",\n            \"orderStatus\": 0,\n            \"orderAddress\": \"testOrAdress2\",\n            \"invoiceAddress\": \"testInAddress2\"\n        },\n        {\n            \"orderId\": 22,\n            \"userId\": 1,\n            \"productId\": 11,\n            \"orderDate\": \"2022-09-07T16:44:13.8843274+03:00\",\n            \"orderStatus\": 0,\n            \"orderAddress\": \"testOrAdress2\",\n            \"invoiceAddress\": \"testInAddress2\"\n        },\n        {\n            \"orderId\": 23,\n            \"userId\": 1,\n            \"productId\": 10,\n            \"orderDate\": \"2022-09-07T16:44:13.8843281+03:00\",\n            \"orderStatus\": 0,\n            \"orderAddress\": \"testOrAdress2\",\n            \"invoiceAddress\": \"testInAddress2\"\n        },\n        {\n            \"orderId\": 24,\n            \"userId\": 1,\n            \"productId\": 9,\n            \"orderDate\": \"2022-09-07T16:44:13.8843282+03:00\",\n            \"orderStatus\": 0,\n            \"orderAddress\": \"testOrAdress2\",\n            \"invoiceAddress\": \"testInAddress2\"\n        },\n        {\n            \"orderId\": 25,\n            \"userId\": 1,\n            \"productId\": 17,\n            \"orderDate\": \"2022-09-07T16:44:13.8843283+03:00\",\n            \"orderStatus\": 0,\n            \"orderAddress\": \"testOrAdress2\",\n            \"invoiceAddress\": \"testInAddress2\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order Status By Order Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"value\": 0,\r\n        \"path\": \"/orderstatus\",\r\n        \"op\": \"replace\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/order/orderid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"orderid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Order Status By Order Id",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"value\": 2,\r\n        \"path\": \"/orderstatus\",\r\n        \"op\": \"replace\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/api/order/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"order",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Sep 2022 13:46:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Operation successful\",\n    \"status\": true,\n    \"data\": {\n        \"orderId\": 1,\n        \"userId\": 1,\n        \"productId\": 10,\n        \"orderDate\": \"2022-08-08T00:00:00\",\n        \"orderStatus\": 2,\n        \"orderAddress\": \"testOrderAddress1\",\n        \"invoiceAddress\": \"testInvoiceAddress1\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
