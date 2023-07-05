@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +23,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Serilog" Version="2.11.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
