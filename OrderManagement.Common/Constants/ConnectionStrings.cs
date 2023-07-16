@@ -2,6 +2,6 @@
 {
     public class ConnectionStrings
     {
-        public const string DbConnectionString = ***REMOVED***;
+        public const string DbConnectionString = "";
     }
 }
